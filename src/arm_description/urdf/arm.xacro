@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.26 0.26 0.1" />
+            </geometry>
+            <origin xyz="0.0 0 0.05" rpy="0 0 0" />
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.26 0.26 0.1" />
+            </geometry>
+            <origin xyz="0 0 0.05" rpy="0 0 0" />
+        </collision>
+    </link>
+
+    <link name="link_1">
+        <visual>
+            <geometry>
+                <box size="0.12 0.16 0.15" />
+            </geometry>
+            <origin xyz="0 0 0.075" rpy="0 0 0" />
+            <material name="blue" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.12 0.16 0.15" />
+            </geometry>
+            <origin xyz="0 0 0.075" rpy="0 0 0" />
+        </collision>
+    </link>
+
+    <link name="link_2">
+        <visual>
+            <geometry>
+                <box size="0.09 0.14 0.4" />
+            </geometry>
+            <origin xyz="0.045 0 0.15" rpy="0 0 0" />
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.09 0.14 0.4" />
+            </geometry>
+            <origin xyz="0.045 0 0.15" rpy="0 0 0" />
+        </collision>
+    </link>
+
+    <link name="link_3">
+        <visual>
+            <geometry>
+                <box size="0.05 0.1 0.34" />
+            </geometry>
+            <origin xyz="-0.025 0 0.14" rpy="0 0 0" />
+            <material name="blue" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.05 0.1 0.34" />
+            </geometry>
+            <origin xyz="-0.025 0 0.14" rpy="0 0 0" />
+        </collision>
+    </link>
+
+    <link name="link_4">
+        <visual>
+            <geometry>
+                <box size="0.06 0.05 0.1" />
+            </geometry>
+            <origin xyz="0 0 -0.005" rpy="0 0 0" />
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.06 0.05 0.1" />
+            </geometry>
+            <origin xyz="0 0 -0.005" rpy="0 0 0" />
+        </collision>
+    </link>
+
+    <link name="link_5">
+        <visual>
+            <geometry>
+                <box size="0.07 0.055 0.08" />
+            </geometry>
+            <origin xyz="0 0 0.04" rpy="0 0 0" />
+            <material name="blue" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.07 0.055 0.08" />
+            </geometry>
+            <origin xyz="0 0 0.04" rpy="0 0 0" />
+        </collision>
+    </link>
+
+    <link name="tool_link" />
+
+
+    <!-- +++++++++++++++++++++++++++++++++++++ joints +++++++++++++++++++++++++++++++++++++ -->
+
+
+    <joint name="joint1" type="revolute">
+        <parent link="base_link" />
+        <child link="link_1" />
+        <origin xyz="0 0 0.1" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" velocity="1.0" lower="-3.14" upper="3.14" />
+    </joint>
+
+    <joint name="joint2" type="revolute">
+        <parent link="link_1" />
+        <child link="link_2" />
+        <origin xyz="0.06 0 0.075" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <limit effort="1000.0" velocity="1.0" lower="-1.57" upper="1.57" />
+    </joint>
+
+    <joint name="joint3" type="revolute">
+        <parent link="link_2" />
+        <child link="link_3" />
+        <origin xyz="0 0 0.3" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <limit effort="1000.0" velocity="1.0" lower="-2.355" upper="2.355" />
+    </joint>
+
+    <joint name="joint4" type="revolute">
+        <parent link="link_3" />
+        <child link="link_4" />
+        <origin xyz="-0.025 0 0.295" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <limit effort="1000.0" velocity="1.0" lower="-1.57" upper="1.57" />
+    </joint>
+
+    <joint name="joint5" type="revolute">
+        <parent link="link_4" />
+        <child link="link_5" />
+        <origin xyz="0 0 0.045" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" velocity="1.0" lower="-3.14" upper="3.14" />
+    </joint>
+
+    <joint name="joint6" type="fixed">
+        <parent link="link_5" />
+        <child link="tool_link" />
+        <origin xyz="0 0 0.12" rpy="0 0 0" />
+    </joint>
+
+
+</robot>
