@@ -4,7 +4,14 @@
   <ros2_control name="Arm" type="system">
       <hardware>
           <!-- By default, set up controllers for simulation. This won't work on real hardware -->
-          <plugin>mock_components/GenericSystem</plugin>
+          <!-- <plugin>mock_components/GenericSystem</plugin>
+          <param name="calculate_dynamics">true</param> -->
+
+          <plugin>arm_hardware/ArmHardwareInterface</plugin>
+          <param name="left_motor_id">10</param>
+          <param name="right_motor_id">20</param>
+          <param name="dynamixel_port">/dev/ttyACM0</param>
+
       </hardware>
       <joint name="joint1">
           <command_interface name="position"/>
